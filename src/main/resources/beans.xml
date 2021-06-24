@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:context="http://www.springframework.org/schema/context">
     <bean class="com.alibaba.bean.Person" id="person" scope="singleton">
         <property name="age" value="18"></property>
         <property name="name" value="张三"></property>
     </bean>
+
+    <!--包扫描，只要标注：@Controller,@Service,@Repository,@Component都能扫到-->
+    <!--1、可以在配置文件配置扫描路径
+        2、可以用注解@ComponentScan
+    -->
+   <!-- <context:component-scan base-package="com.alibaba"></context:component-scan>-->
 </beans>
