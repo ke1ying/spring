@@ -1,14 +1,19 @@
 package com.alibaba.config;
 
 import com.alibaba.bean.Person;
+import com.alibaba.condition.LinuxCondition;
+import com.alibaba.condition.MacCondition;
 import com.alibaba.filter.MyTypeFilter;
+import com.alibaba.filter.MyTypeFilter2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.ComponentScans;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
 /**
@@ -17,16 +22,36 @@ import org.springframework.context.annotation.Scope;
  * singleton （默认的）: 单实例，创建容器的时候直接把bean交给springIOC容器管理，
  *                     以后每次直接在IOC容器中get
  *
+ * @Lazy : 懒加载，只在单例模式的情况下，懒加载是容器创建完之后，第一次获取对象的时候才，创建实例对象。
+ *
  * @author keying
- * @date 2021/6/24
  */
 @Configuration
+//满足conditional条件，这个类的配置信息才可以生效
+@Conditional({LinuxCondition.class})
 public class BeanConfig2 {
 
-    @Scope("prototype")
-    @Bean(value = "person2")
+    @Scope
+    @Lazy
+    @Bean(value = "person")
     public Person getPerson(){
         System.out.println("把bean交给容器管理");
         return new Person("person2",19);
+    }
+
+    /**
+     * @Conditional判断条件，满足就放入容器
+     *
+     */
+
+    @Bean(value = "Mac")
+    @Conditional({MacCondition.class})
+    public Person getMac(){
+        return new Person("Mac",1);
+    }
+
+    @Bean(value = "Linux")
+    public Person getLinux(){
+        return new Person("Linux",2);
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.core.type.filter.TypeFilter;
  *
  * @author keying
  */
-public class MyTypeFilter implements TypeFilter {
+public class MyTypeFilter2 implements TypeFilter {
     public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)
         throws IOException {
         //获取当前类注解信息
@@ -27,7 +27,7 @@ public class MyTypeFilter implements TypeFilter {
         Resource resource = metadataReader.getResource();
         String name = classMetadata.getClassName();
         System.out.println("Filter扫描的类名:" + name);
-        if(name.contains("controller")){
+        if(name.contains("person")){
             return true;
         }
         return false;

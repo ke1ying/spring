@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Configuration
 @ComponentScans(value = {
     @ComponentScan(value = "com.alibaba", includeFilters = {
-        /*@Filter(type = FilterType.ANNOTATION,classes = {Controller.class}),
+        /*@Filter(type = FilterType.ANNOTATION,classes  = {Controller.class}),
         @Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {BookService.class})*/
         @Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class})
     },useDefaultFilters = false)
@@ -49,4 +49,6 @@ public class BeanConfig {
     public Person getPerson(){
         return new Person("李四",19);
     }
+
+
 }
