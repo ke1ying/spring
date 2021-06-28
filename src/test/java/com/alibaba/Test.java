@@ -3,6 +3,7 @@ package com.alibaba;
 import java.util.Map;
 import java.util.Properties;
 
+import com.alibaba.bean.Blue;
 import com.alibaba.bean.Person;
 import com.alibaba.config.BeanConfig;
 import com.alibaba.config.BeanConfig2;
@@ -48,8 +49,35 @@ public class Test {
     AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(
         BeanConfig2.class);
 
+    /**
+     * @Import
+     */
     @org.junit.Test
-    public void test3(){
+    public void testImport() {
+        getDefinitionNames(annotationConfigApplicationContext);
+
+        //放入容器后，从容器中获取
+        Blue blue = annotationConfigApplicationContext.getBean(Blue.class);
+        System.out.println("获取成功的组件：" + blue);
+    }
+
+    private void getDefinitionNames(AnnotationConfigApplicationContext annotationConfigApplicationContext) {
+        String[] names = annotationConfigApplicationContext.getBeanDefinitionNames();
+        for (String name : names) {
+            System.out.println("容器中的组件：" + name);
+        }
+        System.out.println("=======");
+        String[] personNames = annotationConfigApplicationContext.getBeanNamesForType(Person.class);
+        for (String name : personNames) {
+            System.out.println("Person中的组件：" + name);
+        }
+    }
+
+    /**
+     * @Conditional
+     */
+    @org.junit.Test
+    public void test3() {
      /*   String[] beanNames = annotationConfigApplicationContext.getBeanDefinitionNames();
         for (String beanName : beanNames) {
             System.out.println(beanName);
@@ -60,13 +88,12 @@ public class Test {
         for (String name : names) {
             System.out.println(name);
         }
-        Map<String,Person> map = annotationConfigApplicationContext.getBeansOfType(Person.class);
+        Map<String, Person> map = annotationConfigApplicationContext.getBeansOfType(Person.class);
         System.out.println(map);
 
       /*  ConfigurableEnvironment configurableEnvironment = annotationConfigApplicationContext.getEnvironment();
         String name = configurableEnvironment.getProperty("os.name");
         System.out.println(name);*/
-
 
     }
 }
