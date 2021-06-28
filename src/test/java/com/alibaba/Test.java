@@ -59,6 +59,15 @@ public class Test {
         //放入容器后，从容器中获取
         Blue blue = annotationConfigApplicationContext.getBean(Blue.class);
         System.out.println("获取成功的组件：" + blue);
+
+        System.out.println("获取容器中getColorFactoryBean：");
+        Object colorFactoryBeanObject = annotationConfigApplicationContext.getBean("getColorFactoryBean");
+        Object colorFactoryBeanObject2 = annotationConfigApplicationContext.getBean("getColorFactoryBean");
+        System.out.println("getObject方法获取的类型:" + colorFactoryBeanObject.getClass());
+        System.out.println("Bean:" + colorFactoryBeanObject);
+        System.out.println("多实例情况下：" + (colorFactoryBeanObject2 == colorFactoryBeanObject));
+        Object factoryBeanObject = annotationConfigApplicationContext.getBean("&getColorFactoryBean");
+        System.out.println("获取工厂本身的类型:" + factoryBeanObject.getClass());
     }
 
     private void getDefinitionNames(AnnotationConfigApplicationContext annotationConfigApplicationContext) {

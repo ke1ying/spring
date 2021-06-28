@@ -1,6 +1,7 @@
 package com.alibaba.config;
 
 import com.alibaba.bean.Color;
+import com.alibaba.bean.ColorFactoryBean;
 import com.alibaba.bean.Person;
 import com.alibaba.bean.Red;
 import com.alibaba.condition.LinuxCondition;
@@ -61,5 +62,10 @@ public class BeanConfig2 {
     @Conditional({LinuxCondition.class})
     public Person getLinux(){
         return new Person("Linux",2);
+    }
+
+    @Bean
+    public ColorFactoryBean getColorFactoryBean(){
+        return new ColorFactoryBean();
     }
 }
