@@ -3,6 +3,9 @@ package com.alibaba.bean;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +13,9 @@ import org.springframework.stereotype.Component;
  * @date 2021/6/28
  */
 @Component
-public class Cat {
+public class Cat implements ApplicationContextAware {
+
+    private ApplicationContext applicationContext;
 
     public Cat(){
         System.out.println("Cat...construct");
@@ -30,5 +35,9 @@ public class Cat {
     @PreDestroy
     public void destory(){
         System.out.println("cat ...PreDestroy");
+    }
+
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }
