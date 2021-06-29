@@ -18,7 +18,7 @@ public class TestLiftCycle {
             ConfigLifeCycle.class);
         System.out.println("容器创建完毕");
         //多实例情况下，需要获取组件，才会初始化，并且不会销毁
-        Object carObject = annotationConfigApplicationContext.getBean("car");
+        //Object carObject = annotationConfigApplicationContext.getBean("car");
 
         //getDefinitionNames(annotationConfigApplicationContext);
         annotationConfigApplicationContext.close();

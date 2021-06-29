@@ -3,6 +3,7 @@ package com.alibaba.config;
 import com.alibaba.bean.Car;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
@@ -23,8 +24,9 @@ import org.springframework.context.annotation.Scope;
  * @author keying
  */
 @Configuration
+@ComponentScan("com.alibaba.bean")
 public class ConfigLifeCycle {
-    @Scope("prototype")
+    //@Scope("prototype")
     @Bean(initMethod = "init", destroyMethod = "destory")
     public Car car(){
         return new Car();
