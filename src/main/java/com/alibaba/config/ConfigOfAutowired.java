@@ -1,5 +1,7 @@
 package com.alibaba.config;
 
+import com.alibaba.bean.Car;
+import com.alibaba.bean.Color;
 import com.alibaba.dao.BookDao;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,24 +18,35 @@ import org.springframework.context.annotation.Primary;
  * 3)、可以和@Qualifier("组件名")组合使用，直接指定组件名。
  * 4)、默认加载的@Autowired(required=false)必须在容器中存在此组件，不存在则报错，默认为true，也可以指定为required=false，则不会报错。
  * 5)、@Primary注解也可以指定主加载的组件，这时候就默认加载此主键的组件，除非@Qualifier指定其他组件。
- *
  * @Autowired属于Spring规范
  * @Resource (java规范 ， JSR) 和@Inject
  * @Resource：和Autowired是自动装配，默认按组件名称装配，可以指定名称。 @Resource(name = "bookDao2")
- *            不支持@Primary 和 @Autowired(required = false)
+ * 不支持@Primary 和 @Autowired(required = false)
  * @Inject: 需要导入javax.inject包，和Autowired一样，没有@Autowired(required=false)
  *
  * 这是由前面学的 AntowiredAnnotationBeanPostProcessor
- */
-@Configuration
-@ComponentScan(value = {"com.alibaba.controller", "com.alibaba.service", "com.alibaba.dao"})
-public class ConfigOfAutowired {
+     */
+    @Configuration
+    @ComponentScan(value = {"com.alibaba.controller", "com.alibaba.service", "com.alibaba.dao", "com.alibaba.bean"})
+    public class ConfigOfAutowired {
 
-    @Primary
-    @Bean("bookDao2")
-    public BookDao bookDao() {
-        BookDao bookD = new BookDao();
-        bookD.setLable("2");
-        return bookD;
+        @Primary
+        @Bean("bookDao2")
+        public BookDao bookDao() {
+            BookDao bookD = new BookDao();
+            bookD.setLable("2");
+            return bookD;
+        }
+
+        /**
+         * 没选择Compoment注入，选择Bean注入，并且参数会直接从IOC容器中获取
+         *
+         * @return color
+         */
+        @Bean
+        public Color color(Car car) {
+            Color color = new Color();
+            color.setCar(car);
+            return color;
+        }
     }
-}

@@ -1,9 +1,12 @@
 package com.alibaba.bean;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author keying
  * @date 2021/6/28
  */
+@Component
 public class Car {
 
     public Car(){

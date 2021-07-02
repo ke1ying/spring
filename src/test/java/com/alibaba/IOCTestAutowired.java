@@ -1,5 +1,8 @@
 package com.alibaba;
 
+import com.alibaba.bean.Boss;
+import com.alibaba.bean.Car;
+import com.alibaba.bean.Color;
 import com.alibaba.bean.Person;
 import com.alibaba.config.ConfigOfAutowired;
 import com.alibaba.config.MyConfigPropertyValues;
@@ -22,11 +25,18 @@ public class IOCTestAutowired {
     public void test1() {
         //getBeanNames(applicationContext);
 
-        BookService bookService = applicationContext.getBean(BookService.class);
+        //BookService bookService = applicationContext.getBean(BookService.class);
         //BookDao bookDao = applicationContext.getBean(BookDao.class);
-        System.out.println("bookService:" + bookService);
+        //System.out.println("bookService:" + bookService);
         //System.out.println("bookDao:" + bookDao);
-
+        System.out.println("=============从容器中获取Boss中的car========");
+        Boss boss = applicationContext.getBean(Boss.class);
+        System.out.println("boss:" + boss);
+        Car car = applicationContext.getBean(Car.class);
+        System.out.println("car:" + car);
+        System.out.println("=============从Color中获取car");
+        Color color = applicationContext.getBean(Color.class);
+        System.out.println("color:" + color);
 
         applicationContext.close();
     }

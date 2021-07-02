@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  *
  * @author keying
  */
-@Component
+//@Component
 public class MyBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         System.out.println(
