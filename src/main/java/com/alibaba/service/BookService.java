@@ -1,5 +1,8 @@
 package com.alibaba.service;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 import com.alibaba.dao.BookDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +11,16 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author keying
- * @date 2021/6/24
  */
 @Service
 public class BookService {
 
+    /**
+     * @Resource(name = "bookDao2")
+     * @Inject
+     */
     @Autowired(required = false)
-    //@Qualifier("bookDao2")
+    @Qualifier("bookDao2")
     private BookDao bookDao;
 
     public void print() {
