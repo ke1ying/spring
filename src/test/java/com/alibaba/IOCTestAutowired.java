@@ -37,7 +37,7 @@ public class IOCTestAutowired {
         System.out.println("=============从Color中获取car");
         Color color = applicationContext.getBean(Color.class);
         System.out.println("color:" + color);
-
+        System.out.println("ioc容器里的：" + applicationContext);
         applicationContext.close();
     }
 

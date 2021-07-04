@@ -17,7 +17,7 @@ public class Cat implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
-    public Cat(){
+    public Cat() {
         System.out.println("Cat...construct");
     }
 
@@ -25,7 +25,7 @@ public class Cat implements ApplicationContextAware {
      * construct 构造函数创建对象之后执行
      */
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println("cat ...PostConstruct.");
     }
 
@@ -33,11 +33,13 @@ public class Cat implements ApplicationContextAware {
      * 销毁之前调用
      */
     @PreDestroy
-    public void destory(){
+    public void destory() {
         System.out.println("cat ...PreDestroy");
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        Cat cat = applicationContext.getBean(Cat.class);
+        System.out.println("applicationContextAware:" + cat);
         this.applicationContext = applicationContext;
     }
 }
