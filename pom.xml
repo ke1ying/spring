@@ -41,6 +41,13 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>8.0.23</version>
     </dependency>
+
+    <!--Aop-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>4.3.12.RELEASE</version>
+    </dependency>
 </dependencies>
 
 </project>
