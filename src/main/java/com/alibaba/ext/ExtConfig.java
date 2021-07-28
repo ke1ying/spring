@@ -23,4 +23,14 @@ public class ExtConfig {
     public Car car(){
         return new Car();
     }
+
+  /*  @Bean("a")
+    public A a(){
+        return new A();
+    }
+
+    @Bean("b")
+    public B b(){
+        return new B();
+    }*/
 }
