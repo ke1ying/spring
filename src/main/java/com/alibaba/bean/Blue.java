@@ -9,4 +9,7 @@ package com.alibaba.bean;
 public class Blue {
     //版本号回滚
     private String blue;
+
+    //
+    private String second;
 }
